@@ -1,6 +1,17 @@
 using BlazorApp5;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.AllowSynchronousIO = true;
+    //options.ListenAnyIP(5001, listenOptions =>
+    //{
+    //    listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+    //    listenOptions.UseHttps();
+    //});
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
